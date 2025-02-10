@@ -1,49 +1,45 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
-
 import App from "./App";
-import Home from "./pages/Home.tsx";
-import ErrorPage from "./pages/ErrorPage.tsx";
-import Genres from "./pages/Genres.tsx";
-import MyReelRanks from "./pages/MyReelRanks.tsx";
+import "./styles/main.css";
+import Home from "./pages/HomePage";
+import Genres from "./pages/Genres";
+import UserProfile from "./pages/UserProfile";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: "/About",
-        element: <About/>,
-      },
-      {
-        path: "/Genres",
-        element: <Genres />,
-      },
-      {
-        path: "/HomePage",
+        path: "/",
         element: <Home />,
       },
       {
-        path: "/HomePage",
-        element: <HomePage/>,
+        path: "/genres",
+        element: <Genres />,
       },
       {
-        path: "/MyReelRanks",
-        element: <MyReelRanks/>,
+        path: "/profile",
+        element: <UserProfile />,
       },
       {
-        path: "/UserProfile",
-        element: <UserProfile/>,
-      }
+        path: "/signup",
+        element: <UserProfile />,
+      },
+      {
+        path: "/login",
+        element: <UserProfile />,
+      },
     ],
   },
 ]);
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </React.StrictMode>
 );

@@ -1,9 +1,19 @@
-import Genre from "../components/Genre";
+import GenreComponent from "../components/Genre";
 
-const Genres = () => {
+interface Genre {
+  id: number;
+  name: string;
+}
+
+const Genres = ({ genres }: { genres: Genre[] }) => {
   return (
     <div className="genres-page">
-      <Genre />
+      {genres.map(genre => (
+        <GenreComponent 
+          key={genre.id}
+          {...genre}
+        />
+      ))}
     </div>
   );
 };
